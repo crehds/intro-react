@@ -21,6 +21,20 @@ function App() {
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
+  const completeTodo = (text) => {
+    const updateTodos = defaultTodos.slice();
+    const updateTodo = updateTodos.find((todo) => todo.text === text);
+
+    updateTodo.completed = !updateTodo.completed;
+
+    setTodos(updateTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const deleteTodos = [...defaultTodos].filter((todo) => todo.text !== text);
+    setTodos(deleteTodos);
+  };
+
   return (
     <>
       <TodoCounter completed={completedTodos} total={totalTodos} />
@@ -35,6 +49,8 @@ function App() {
               key={`Todo-${item}`}
               text={todo.text}
               completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
               setTodos={setTodos}
             />
           ))}
