@@ -1,12 +1,27 @@
 import './styles.css';
 
 function TodoItem(props) {
-  const onComplete = () => {
-    alert('Ya completaste el todo ' + props.text);
+  const onComplete = (event) => {
+    const textOfP = event.target.nextSibling.textContent;
+
+    props.setTodos((prevTodos) => {
+      const updateTodos = prevTodos.slice();
+      const updateTodo = updateTodos.find((todo) => todo.text === textOfP);
+
+      updateTodo.completed = !updateTodo.completed;
+
+      return updateTodos;
+    });
   };
 
-  const onDelete = () => {
-    alert('Borraste el todo ' + props.text);
+  const onDelete = (event) => {
+    const textOfP = event.target.previousSibling.textContent;
+
+    props.setTodos((prevTodos) => {
+      const updateTodos = prevTodos.filter((todo) => todo.text !== textOfP);
+
+      return updateTodos;
+    });
   };
 
   return (

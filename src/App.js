@@ -9,8 +9,8 @@ import { TodoSearch } from './components/TodoSearch';
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar un curso en Platzi', completed: true },
-  { text: 'Hacer ejercicio', completed: true },
+  { text: 'Tomar un curso en Platzi', completed: false },
+  { text: 'Hacer ejercicio', completed: false },
   { text: 'LALALALA', completed: false }
 ];
 
@@ -35,6 +35,7 @@ function App() {
               key={`Todo-${item}`}
               text={todo.text}
               completed={todo.completed}
+              setTodos={setTodos}
             />
           ))}
       </TodoList>
