@@ -1,7 +1,11 @@
 import './styles.css';
 
-function TodoCounter() {
-  return <h2 className='TodoCounter'>Has completado 3 de 4 TODOs</h2>;
+function TodoCounter({ completed, total }) {
+  return (
+    <h2 className='TodoCounter'>
+      Has completado {completed} de {total} TODOs
+    </h2>
+  );
 }
 
 export { TodoCounter };
