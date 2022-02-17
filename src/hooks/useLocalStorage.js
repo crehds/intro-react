@@ -21,12 +21,12 @@ function useLocalStorage(key, initialValue) {
         const item = localStorage.getItem(key);
         if (item) {
           setValue(JSON.parse(item));
-          setLoading(false);
         }
       } catch (error) {
         console.error(error);
         setError(error);
       }
+      setLoading(false);
     }, 1000);
   });
 
