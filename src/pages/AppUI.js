@@ -6,10 +6,18 @@ import { TodoItem } from '../components/TodoList/components/TodoItem';
 import { TodoSearch } from '../components/TodoSearch';
 import { CreateTodoButton } from '../components/TodoButton';
 import { Context } from '../context';
+import { Modal } from '../Modal';
 
 function AppUI() {
-  const { error, loading, searchedTodos, completeTodo, deleteTodo } =
-    useContext(Context);
+  const {
+    error,
+    loading,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal
+  } = useContext(Context);
   return (
     <>
       <TodoCounter />
@@ -30,7 +38,12 @@ function AppUI() {
         ))}
       </TodoList>
 
-      <CreateTodoButton />
+      {openModal && (
+        <Modal>
+          <p>{searchedTodos[0]?.text}</p>
+        </Modal>
+      )}
+      <CreateTodoButton openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 }

@@ -15,11 +15,17 @@
   align-items: center;
   height: 64px;
   width: 64px;
-
+  z-index: 1000;
   transform: rotate(0);
   transition: 0.3s ease;
 }
 
 .CreateTodoButton:hover {
+  box-shadow: 0px 5px 25px 0 rgba(3, 54, 68, 0.9);
+}
+
+.CreateTodoButton.active {
   transform: rotate(224deg);
+  background-color: rgb(190, 52, 47);
+  box-shadow: 0px 5px 25px rgba(184, 53, 53, 0.767);
 }
