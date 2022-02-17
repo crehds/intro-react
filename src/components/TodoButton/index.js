@@ -1,14 +1,8 @@
 import './styles.css';
 
-function CreateTodoButton({ openModal, setOpenModal }) {
-  const onClick = (event) => {
-    const button = event.target;
-    if (button.classList.contains('active')) {
-      button.classList.remove('active');
-    } else {
-      button.classList.add('active');
-    }
-    setOpenModal(!openModal);
+function CreateTodoButton({ handlerModal }) {
+  const onClick = () => {
+    handlerModal();
   };
 
   return (

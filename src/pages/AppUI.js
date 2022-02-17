@@ -7,6 +7,7 @@ import { TodoSearch } from '../components/TodoSearch';
 import { CreateTodoButton } from '../components/TodoButton';
 import { Context } from '../context';
 import { Modal } from '../Modal';
+import { TodoForm } from '../components/TodoForm';
 
 function AppUI() {
   const {
@@ -16,7 +17,7 @@ function AppUI() {
     completeTodo,
     deleteTodo,
     openModal,
-    setOpenModal
+    handlerModal
   } = useContext(Context);
   return (
     <>
@@ -40,10 +41,10 @@ function AppUI() {
 
       {openModal && (
         <Modal>
-          <p>{searchedTodos[0]?.text}</p>
+          <TodoForm />
         </Modal>
       )}
-      <CreateTodoButton openModal={openModal} setOpenModal={setOpenModal} />
+      <CreateTodoButton handlerModal={handlerModal} />
     </>
   );
 }

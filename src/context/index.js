@@ -10,11 +10,25 @@ export const Provider = ({ children }) => {
     loading,
     error
   } = useLocalStorage('TODOS_V1', []);
+
   const [searchValue, setSearchValue] = useState('');
   const [openModal, setOpenModal] = useState(false);
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
+
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      text
+    });
+    setLocalStorage(newTodos);
+  };
+
+  const searchedTodos = todos.filter((todo) =>
+    todo.text.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   const completeTodo = (text) => {
     const updateTodos = todos.slice();
@@ -30,24 +44,31 @@ export const Provider = ({ children }) => {
     setLocalStorage(deleteTodos);
   };
 
-  const searchedTodos = todos.filter((todo) =>
-    todo.text.toLowerCase().includes(searchValue.toLowerCase())
-  );
+  const handlerModal = () => {
+    const button = document.querySelector('.CreateTodoButton');
+    if (button.classList.contains('active')) {
+      button.classList.remove('active');
+    } else {
+      button.classList.add('active');
+    }
+    setOpenModal((prevState) => !prevState);
+  };
 
   return (
     <Context.Provider
       value={{
         loading,
         error,
+        openModal,
+        handlerModal,
         totalTodos,
         completedTodos,
+        addTodo,
         searchValue,
         setSearchValue,
         searchedTodos,
         completeTodo,
-        deleteTodo,
-        openModal,
-        setOpenModal
+        deleteTodo
       }}
     >
       {children}
