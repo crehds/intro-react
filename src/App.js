@@ -12,7 +12,12 @@ import { AppUI } from './pages/AppUI';
 // ];
 
 function App() {
-  const [todos, setTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    storedValue: todos,
+    setLocalStorage: setTodos,
+    loading,
+    error
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -38,6 +43,8 @@ function App() {
 
   return (
     <AppUI
+      loading={loading}
+      error={error}
       totalTodos={totalTodos}
       completedTodos={completedTodos}
       searchValue={searchValue}
