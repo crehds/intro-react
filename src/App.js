@@ -1,6 +1,7 @@
 // import './App.css';
 
 import { useState } from 'react';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import { AppUI } from './pages/AppUI';
 
 // const defaultTodos = [
@@ -11,27 +12,11 @@ import { AppUI } from './pages/AppUI';
 // ];
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-
-  let parsedTodos;
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-
-  const [todos, setTodos] = useState(parsedTodos);
+  const [todos, setTodos] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
-
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem('TODOS_V1', stringifiedTodos);
-    setTodos(newTodos);
-  };
 
   const completeTodo = (text) => {
     const updateTodos = todos.slice();
@@ -39,12 +24,12 @@ function App() {
 
     updateTodo.completed = !updateTodo.completed;
 
-    saveTodos(updateTodos);
+    setTodos(updateTodos);
   };
 
   const deleteTodo = (text) => {
     const deleteTodos = [...todos].filter((todo) => todo.text !== text);
-    saveTodos(deleteTodos);
+    setTodos(deleteTodos);
   };
 
   const searchedTodos = todos.filter((todo) =>
