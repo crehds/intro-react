@@ -10,21 +10,28 @@ import { Modal } from '../Modal';
 import { TodoForm } from '../components/TodoForm';
 import { TodoError } from '../components/TodoError';
 import { TodoLoading } from '../components/TodoLoading';
+import { TodoHeader } from '../components/TodoHeader';
 
 function AppUI() {
   const {
     error,
     loading,
     searchedTodos,
+    searchValue,
+    setSearchValue,
     completeTodo,
     deleteTodo,
     openModal,
-    handlerModal
+    handlerModal,
+    totalTodos,
+    completedTodos
   } = useContext(Context);
   return (
     <>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoHeader>
+        <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
+        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      </TodoHeader>
 
       <TodoList>
         {error && <TodoError error={error} />}
