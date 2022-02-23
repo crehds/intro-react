@@ -1,9 +1,7 @@
-import { createContext, useState } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useState } from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
-export const Context = createContext();
-
-export const Provider = ({ children }) => {
+export const useTodos = () => {
   const {
     storedValue: todos,
     setLocalStorage,
@@ -54,24 +52,18 @@ export const Provider = ({ children }) => {
     setOpenModal((prevState) => !prevState);
   };
 
-  return (
-    <Context.Provider
-      value={{
-        loading,
-        error,
-        openModal,
-        handlerModal,
-        totalTodos,
-        completedTodos,
-        addTodo,
-        searchValue,
-        setSearchValue,
-        searchedTodos,
-        completeTodo,
-        deleteTodo
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  return {
+    loading,
+    error,
+    openModal,
+    handlerModal,
+    totalTodos,
+    completedTodos,
+    addTodo,
+    searchValue,
+    setSearchValue,
+    searchedTodos,
+    completeTodo,
+    deleteTodo
+  };
 };
