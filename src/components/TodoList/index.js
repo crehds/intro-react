@@ -6,11 +6,14 @@ function TodoList(props) {
       {props.error && props.onError()}
       {props.loading && props.onLoading()}
       {!props.loading && !props.totalTodos && props.onEmpty()}
-      {props.totalTodos &&
-        !props.searchedTodos.length &&
-        props.onEmptySearchResults(props.searchValue)}
-
-      <ul>{props.searchedTodos.map(props.render || props.children)}</ul>
+      {!props.searchedTodos.length && props.totalTodos
+        ? props.onEmptySearchResults(props.searchValue)
+        : null}
+      <ul>
+        {!props.loading &&
+          !props.error &&
+          props.searchedTodos.map(props.render || props.children)}
+      </ul>
     </section>
   );
 }
