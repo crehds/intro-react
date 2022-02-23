@@ -6,7 +6,8 @@ export const useTodos = () => {
     storedValue: todos,
     setLocalStorage,
     loading,
-    error
+    error,
+    synchronizedLocalStorage
   } = useLocalStorage('TODOS_V1', []);
 
   const [searchValue, setSearchValue] = useState('');
@@ -64,6 +65,7 @@ export const useTodos = () => {
     setSearchValue,
     searchedTodos,
     completeTodo,
-    deleteTodo
+    deleteTodo,
+    synchronizedLocalStorage
   };
 };

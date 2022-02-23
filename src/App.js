@@ -11,6 +11,7 @@ import { TodoForm } from './components/TodoForm';
 import { TodoError } from './components/TodoError';
 import { TodoLoading } from './components/TodoLoading';
 import { TodoHeader } from './components/TodoHeader';
+import { ChangeAlertWithStorageAlert } from './components/ChangeAlert';
 
 function App() {
   const {
@@ -25,7 +26,8 @@ function App() {
     handlerModal,
     totalTodos,
     completedTodos,
-    addTodo
+    addTodo,
+    synchronizedLocalStorage
   } = useTodos();
 
   return (
@@ -75,6 +77,7 @@ function App() {
         </Modal>
       )}
       <CreateTodoButton handlerModal={handlerModal} />
+      <ChangeAlertWithStorageAlert synchronized={synchronizedLocalStorage} />
     </>
   );
 }
