@@ -40,11 +40,26 @@ function App() {
         loading={loading}
         searchedTodos={searchedTodos}
         onError={() => <TodoError />}
+        totalTodos={totalTodos}
+        searchValue={searchValue}
         onLoading={() =>
           new Array(4).fill().map((e, i) => <TodoLoading key={i} />)
         }
         onEmpty={() => <p>¡Crea tu primer TODO!</p>}
-        render={(todo) => (
+        onEmptySearchResults={(searchText) => (
+          <p>No hay resultados para {searchText}</p>
+        )}
+        // render={(todo) => (
+        //   <TodoItem
+        //     key={todo.text}
+        //     text={todo.text}
+        //     completed={todo.completed}
+        //     onComplete={() => completeTodo(todo.text)}
+        //     onDelete={() => deleteTodo(todo.text)}
+        //   />
+        // )}
+      >
+        {(todo) => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -53,7 +68,7 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
           />
         )}
-      />
+      </TodoList>
       {openModal && (
         <Modal>
           <TodoForm addTodo={addTodo} handlerModal={handlerModal} />
