@@ -11,7 +11,7 @@ import { TodoForm } from './components/TodoForm';
 import { TodoError } from './components/TodoError';
 import { TodoLoading } from './components/TodoLoading';
 import { TodoHeader } from './components/TodoHeader';
-import { ChangeAlertWithStorageAlert } from './components/ChangeAlert';
+import { ChangeAlert } from './components/ChangeAlert';
 
 function App() {
   const {
@@ -77,7 +77,7 @@ function App() {
         </Modal>
       )}
       <CreateTodoButton handlerModal={handlerModal} />
-      <ChangeAlertWithStorageAlert synchronized={synchronizedLocalStorage} />
+      <ChangeAlert synchronized={synchronizedLocalStorage} />
     </>
   );
 }

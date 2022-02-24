@@ -1,8 +1,9 @@
-import { withStorageListener } from '../../HOCs/withStorageListener';
+import { useStorageListener } from '../../hooks/useStorageListener';
 import './styles.css';
 
-function ChangeAlert({ show, toggleShow }) {
-  if (show) {
+function ChangeAlert({ synchronized }) {
+  const { storageChange, toggleShow } = useStorageListener(synchronized);
+  if (storageChange) {
     return (
       <div className='ChangeAlert-bg'>
         <div className='ChangeAlert-container'>
@@ -26,6 +27,4 @@ function ChangeAlert({ show, toggleShow }) {
   }
 }
 
-const ChangeAlertWithStorageAlert = withStorageListener(ChangeAlert);
-
-export { ChangeAlertWithStorageAlert };
+export { ChangeAlert };

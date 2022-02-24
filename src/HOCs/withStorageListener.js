@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+// LEAVE THIS FILE FOR EDUCATIONAL PURPOSES ON IMPLEMENTING A HOC.
+// THE CUSTOM HOOK IS USED INSTEAD OF THIS HOC
 export function withStorageListener(WrappedComponent) {
   return function WrappedComponentWithStorageListener(props) {
     const [storageChange, setStorageChange] = useState(false);
